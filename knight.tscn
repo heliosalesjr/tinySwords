@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnbhgg1cg8ao7"]
+[gd_scene load_steps=10 format=3 uid="uid://cnbhgg1cg8ao7"]
 
 [ext_resource type="Script" path="res://knight.gd" id="1_0rf7i"]
 [ext_resource type="Texture2D" uid="uid://c6l6wjfml5gly" path="res://assets/Factions/Knights/Warrior.png" id="1_wgot5"]
@@ -57,6 +57,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea/Collision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_q606l"]
 resource_name = "attack"
@@ -108,6 +120,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [12, 13, 14, 15, 16, 17]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea/Collision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_l6yvr"]
@@ -224,6 +248,9 @@ _data = {
 "run": SubResource("Animation_h5tsu")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ioyf"]
+size = Vector2(64, 109)
+
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_0rf7i")
 
@@ -240,5 +267,12 @@ vframes = 3
 libraries = {
 "": SubResource("AnimationLibrary_6fs7a")
 }
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(55, -14.5)
+shape = SubResource("RectangleShape2D_3ioyf")
+disabled = true
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
