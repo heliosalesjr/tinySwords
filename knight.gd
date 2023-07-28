@@ -8,13 +8,19 @@ extends CharacterBody2D
 
 @onready var texture = $Texture
 
+@export var damage: int = 1
 
+@export var health: int = 10
 
 var can_attack: bool = true
+var can_die: bool = false
 
 func _physics_process(_delta: float) -> void:
 	
-	if can_attack == false:
+	if (
+		can_attack == false or
+		can_die
+	):
 		return
 	
 	move()
@@ -54,5 +60,22 @@ func attack_handler() -> void:
 		
 		animation.play("attack")
 
-func _on_animation_finished(_anim_name):
+func _on_animation_finished(anim_name):
+	match anim_name:
+		"attack":
+			can_attack = true
+		"death":
+			get_tree().reload_current_scene()
+			
 	can_attack = true
+
+
+func on_attack_area_body_entered(body):
+	body.update_health(damage)
+	
+func update_health(value):
+	health -= value
+	if health <= 0:
+		can_die = true
+		animation.play("death")
+		attack_area_collision.set_deferred("disabled", true)
