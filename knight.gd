@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 @onready var animation: AnimationPlayer = get_node("Animation")
 
+@onready var aux_animation_player: AnimationPlayer = get_node("AuxAnimationPlayer")
+
 @export var move_speed: float = 256.0
 
 @onready var texture = $Texture
@@ -11,6 +13,8 @@ extends CharacterBody2D
 @export var damage: int = 1
 
 @export var health: int = 10
+
+
 
 var can_attack: bool = true
 var can_die: bool = false
@@ -79,3 +83,6 @@ func update_health(value):
 		can_die = true
 		animation.play("death")
 		attack_area_collision.set_deferred("disabled", true)
+		
+		return
+	aux_animation_player.play("hit")
