@@ -85,4 +85,5 @@ func update_health(value):
 		attack_area_collision.set_deferred("disabled", true)
 		
 		return
+		
 	aux_animation_player.play("hit")

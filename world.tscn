@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdei042nuiii3"]
 
-[ext_resource type="PackedScene" uid="uid://e34ayod2xuhw" path="res://goblin.tscn" id="1_8iojt"]
+[ext_resource type="PackedScene" uid="uid://6sdknbisw3u8" path="res://goblin.tscn" id="1_8iojt"]
 [ext_resource type="PackedScene" uid="uid://cnbhgg1cg8ao7" path="res://knight.tscn" id="2_o1vf0"]
 
 [node name="World" type="Node2D"]
 
-[node name="Goblin" parent="." instance=ExtResource("1_8iojt")]
-position = Vector2(117, 118)
-
 [node name="Knight" parent="." instance=ExtResource("2_o1vf0")]
-position = Vector2(942, 151)
+position = Vector2(777, 373)
+
+[node name="goblin" parent="." instance=ExtResource("1_8iojt")]
+position = Vector2(344, 366)
