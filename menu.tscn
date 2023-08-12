@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0ob4ir5wk340"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_stfx6"]
+
+[sub_resource type="FontVariation" id="FontVariation_0xv2g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6fc2"]
+font = SubResource("FontVariation_0xv2g")
+font_size = 64
+outline_size = 12
+outline_color = Color(0.223529, 0, 0.494118, 1)
+shadow_size = 8
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="FontVariation" id="FontVariation_3wnlv"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_stfx6")
+
+[node name="GameName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 143.0
+offset_right = 490.0
+offset_bottom = 234.0
+text = "Tiny Monas"
+label_settings = SubResource("LabelSettings_w6fc2")
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -360.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="NewGame" type="Button" parent="ButtonsContainer" groups=["button"]]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_3wnlv")
+theme_override_font_sizes/font_size = 32
+text = "Novo Jogo"
+
+[node name="Quit" type="Button" parent="ButtonsContainer" groups=["button"]]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = SubResource("FontVariation_3wnlv")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="ButtonsContainer/Quit" to="." method="_on_quit_pressed"]
